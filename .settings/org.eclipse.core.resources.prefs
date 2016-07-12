@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//src/bookstore/action/FinishAction.java=UTF-8
+encoding//src/bookstore/action/LoginAction.java=UTF-8
+encoding//src/bookstore/action/PayAction.java=UTF-8
+encoding//src/bookstore/action/SignUpAction.java=UTF-8
+encoding//src/bookstore/action/UploadAction.java=UTF-8
+encoding//src/bookstore/manager/action/DoChangeAction.java=UTF-8
+encoding//src/bookstore/manager/action/ShowInfoAction.java=UTF-8

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<constant name="struts.multipart.maxSize" value="10000000"></constant>
+	<package name="default" extends="struts-default">
+		<action name="home" class="bookstore.action.HomeAction">
+			<result name="success">/WEB-INF/content/home.jsp</result>
+		</action>
+		<action name="dosearch" class="bookstore.action.SearchAction">
+			<result name="success">/WEB-INF/content/showBooks.jsp</result>
+			<result name="error">/WEB-INF/content/test.jsp</result>
+		</action>
+		<action name="login" class="bookstore.action.LoginAction">
+			<result name="success">/WEB-INF/content/${returnUri}</result>
+		</action>
+		<action name="signUp" class="bookstore.action.SignUpAction">
+			<result name="success">/WEB-INF/content/${returnUri}</result>
+			<result name="error">/WEB-INF/content/signUpError.jsp</result>
+		</action>
+		<action name="logout" class="bookstore.action.LogOutAction">
+			<result name="success">/WEB-INF/content/home.jsp</result>
+		</action>
+		<action name="buy" class="bookstore.action.BuyAction">
+			<result name="success">/WEB-INF/content/order.jsp</result>
+		</action>
+		<action name="pay" class="bookstore.action.PayAction">
+			<result name="success">/WEB-INF/content/pay.jsp</result>
+			<result name="error">/WEB-INF/content/payError.jsp</result>
+			<result name="loginInFirst" type="chain">loginOrSignup</result>
+		</action>
+		<action name="user_information" class="bookstore.action.UserInformationAction">
+			<result name="success">/WEB-INF/content/userInformation.jsp</result>
+		</action>
+		<action name="modify" class="bookstore.action.ModifyAction">
+			<result name="success" type="chain">user_information</result>
+		</action>
+		<action name="book_db" class="bookstore.util.DBAction" method="query">
+			<result name="success">/WEB-INF/content/bookList.jsp</result>
+		</action>
+		<action name="order_db" class="bookstore.util.DBAction" method="query">
+			<result name="success">/WEB-INF/content/orderList.jsp</result>
+		</action>
+		<action name="finish" class="bookstore.action.FinishAction">
+			<result name="success">/WEB-INF/content/finish.jsp</result>
+		</action>
+		<action name="upload" class="bookstore.action.UploadAction">
+			<result name="success">/WEB-INF/content/addBook.jsp</result>
+		</action>
+		<action name="add_book" class="bookstore.action.AddBookAction">
+			<result name="success" type="chain">user_information</result>
+		</action>
+		<action name="manager_login" class="bookstore.manager.action.LoginAction">
+			<result name="success" type="chain">showInfo</result>
+			<result name="error" type="chain">managerLogin</result>
+		</action>
+		<action name="showInfo" class="bookstore.manager.action.ShowInfoAction">
+			<result name="success">/WEB-INF/content/managerOperation.jsp</result>
+			<result name="error">/WEB-INF/content/test.jsp</result>
+		</action>
+		<action name="doChange" class="bookstore.manager.action.DoChangeAction">
+			<result name="success" type="chain">showInfo</result>
+			<result name="error">/WEB-INF/content/test.jsp</result>
+		</action>
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+	</package>
+	
+</struts>
